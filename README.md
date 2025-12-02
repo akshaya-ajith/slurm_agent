@@ -36,4 +36,4 @@ You will be prompted for:
 - `discover_slurm.py`: Utility to check for SLURM API availability.
 
 ## Configuration
-Currently, keys and passwords are entered at runtime for security.
+Currently, keys and passwords are in the `.env` file.
