@@ -1,6 +1,6 @@
 # atomGPT SLURM Agent
 
-An agentic tool that uses OpenAI to generate and submit SLURM jobs to the `atomgptlab01` HPC cluster via SSH.
+Prototype for agentic tool that uses OpenAI to generate and submit SLURM jobs to the `atomgptlab01` HPC cluster via SSH.
 
 ## Features
 - **Natural Language Interface**: Ask for jobs in plain English (e.g., "Run a python script to train a model").
