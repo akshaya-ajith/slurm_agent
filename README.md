@@ -25,9 +25,9 @@ Run the agent:
 python3 agent.py
 ```
 
-You will be prompted for:
-1. **OpenAI API Key**: To power the agent's logic.
-2. **SSH Password**: To connect to the cluster.
+You must add these to your environment variables:
+1. **ATOMGPT_API_KEY**: To power the agent's logic.
+2. **SLURM_PASSWORD**: To connect to the cluster.
 
 ## Project Structure
 - `agent.py`: Main entry point. Handles user interaction and AI logic.
