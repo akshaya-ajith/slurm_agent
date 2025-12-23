@@ -22,51 +22,6 @@ class SlurmClient(ABC):
         """Returns the stdout/stderr of the job."""
         pass
 
-class MockSlurmClient(SlurmClient):
-    """Simulates a SLURM cluster for development."""
-    
-    def __init__(self):
-        self.jobs: Dict[str, Dict[str, Any]] = {}
-        print("🔧 Initialized MockSlurmClient")
-
-    def submit_job(self, script_content: str) -> str:
-        job_id = str(random.randint(1000, 9999))
-        self.jobs[job_id] = {
-            "status": "PENDING",
-            "script": script_content,
-            "submitted_at": time.time(),
-            "output": ""
-        }
-        print(f"🚀 [Mock] Job submitted! ID: {job_id}")
-        return job_id
-
-    def get_job_status(self, job_id: str) -> str:
-        if job_id not in self.jobs:
-            return "UNKNOWN"
-        
-        job = self.jobs[job_id]
-        # Simulate progression: PENDING -> RUNNING -> COMPLETED
-        elapsed = time.time() - job["submitted_at"]
-        
-        if elapsed < 2:
-            status = "PENDING"
-        elif elapsed < 5:
-            status = "RUNNING"
-        else:
-            status = "COMPLETED"
-            # Generate fake output based on script content (simple heuristic)
-            if not job["output"]:
-                if "python" in job["script"]:
-                    job["output"] = "Result: 42 (Mock Output)"
-                else:
-                    job["output"] = "Job completed successfully."
-        
-        job["status"] = status
-        return status
-
-    def get_job_output(self, job_id: str) -> str:
-        return self.jobs.get(job_id, {}).get("output", "No output available.")
-
 class ParamikoSlurmClient(SlurmClient):
     """Actual SLURM client using SSH via Paramiko."""
     
